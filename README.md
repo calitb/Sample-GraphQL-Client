@@ -1,5 +1,7 @@
 # GraphQL Client
 
+![Demo](./images/ios.gif)
+
 ### 1. Start the server
 
 To start first clone and run the server
