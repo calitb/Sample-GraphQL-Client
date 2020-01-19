@@ -54,7 +54,7 @@ interface SetNicknamePayload {
 }
 
 interface SetNicknameResponse {
-  pokemon: Pokemon;
+  setNickname: Pokemon;
 }
 
 const SET_NICKNAME = gql`
