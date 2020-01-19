@@ -9,7 +9,7 @@ import PokemonCard from '../PokemonCard';
 import { Text, TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { NavigationScreenProp, NavigationState } from 'react-navigation';
 
-import { addNicknameMutation, getPokemonQuery } from '../../graphql/pokemons';
+import { getPokemonQuery, setNicknameMutation } from '../../graphql/pokemons';
 
 const styles = StyleSheet.create({
   inputView: {
@@ -55,7 +55,7 @@ export default function PokemonDetailsScreen(props: PokemonDetailsScreenProps) {
     },
   });
 
-  const [saveNickname] = addNicknameMutation({
+  const [saveNickname] = setNicknameMutation({
     onCompleted: () => {
       refetch();
     },

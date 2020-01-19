@@ -35,6 +35,7 @@ interface GetPokemonResponse {
 const GET_POKEMON = gql`
   query GET_POKEMON($id: ID!) {
     pokemon(id: $id) {
+      id
       name
       image
       nickname
@@ -47,18 +48,19 @@ export const getPokemonQuery = (options: QueryHookOptions<GetPokemonResponse, Ge
 
 /************** update nickname **************/
 
-interface AddNicknamePayload {
+interface SetNicknamePayload {
   id: string;
   nickname?: string;
 }
 
-interface AddNicknameResponse {
+interface SetNicknameResponse {
   pokemon: Pokemon;
 }
 
-const ADD_NICKNAME = gql`
-  mutation ADD_NICKNAME($id: ID!, $nickname: String!) {
-    addNickname(id: $id, nickname: $nickname) {
+const SET_NICKNAME = gql`
+  mutation SET_NICKNAME($id: ID!, $nickname: String!) {
+    setNickname(id: $id, nickname: $nickname) {
+      id
       name
       image
       nickname
@@ -67,4 +69,4 @@ const ADD_NICKNAME = gql`
   }
 `;
 
-export const addNicknameMutation = (options: MutationHookOptions<AddNicknameResponse, AddNicknamePayload>) => useMutation(ADD_NICKNAME, options);
+export const setNicknameMutation = (options: MutationHookOptions<SetNicknameResponse, SetNicknamePayload>) => useMutation(SET_NICKNAME, options);
