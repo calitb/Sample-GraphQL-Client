@@ -3,8 +3,7 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
 
-// const GRAPHQL_URL = 'https://graphql-pokemon.now.sh';
-const GRAPHQL_URL = 'http://192.168.0.13/graphql';
+const GRAPHQL_URL = 'http://127.0.0.1/graphql';
 const REQUEST_TIMEOUT_MS = 30000;
 
 const consoleLogColor = (text: string, color: number) => {
@@ -25,25 +24,13 @@ const debugMiddleware = new ApolloLink((operation, forward) => {
 
     if (response.errors) {
       consoleLogColor(
-        `\nGraphQL Operation: ${operationName}\nGraphQL Endpoint: ${GRAPHQL_URL}\nvariables:${JSON.stringify(
-          variables,
-        )}\nresponse.data:${JSON.stringify(
-          response,
-          stringifyFilter,
-          space,
-        )}\n`,
-        31,
+        `\nGraphQL Operation: ${operationName}\nGraphQL Endpoint: ${GRAPHQL_URL}\nvariables:${JSON.stringify(variables)}\nresponse.data:${JSON.stringify(response, stringifyFilter, space)}\n`,
+        31
       );
     } else {
       consoleLogColor(
-        `\nGraphQL Operation: ${operationName}\nGraphQL Endpoint: ${GRAPHQL_URL}\nvariables:${JSON.stringify(
-          variables,
-        )}\nresponse.data:${JSON.stringify(
-          response.data,
-          stringifyFilter,
-          space,
-        )}\n`,
-        36,
+        `\nGraphQL Operation: ${operationName}\nGraphQL Endpoint: ${GRAPHQL_URL}\nvariables:${JSON.stringify(variables)}\nresponse.data:${JSON.stringify(response.data, stringifyFilter, space)}\n`,
+        36
       );
     }
 
@@ -51,10 +38,7 @@ const debugMiddleware = new ApolloLink((operation, forward) => {
   });
 });
 
-const fetchWithTimeout = (
-  uri: RequestInfo,
-  options: RequestInit,
-): Promise<Response> => {
+const fetchWithTimeout = (uri: RequestInfo, options: RequestInit): Promise<Response> => {
   const fetchResult = fetch(uri, options);
   const promise = new Promise<Response>((resolve, reject) => {
     const timeout = setTimeout(() => {
