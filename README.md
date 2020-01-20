@@ -17,9 +17,16 @@ npm start
 
 ```
 npm i
-cd ios
-pod install
-cd ..
+npm run pods
+npm run ios
 ```
 
-And follow the guide [React Native CLI Quickstart](https://facebook.github.io/react-native/docs/getting-started) on how to run the React-Native application.
+### 3. Select the demo to run:
+
+There are 3 demos to run, you can switch between them by opening `./components/routes.tsx` and edit the last line.
+
+1. Demo1: Application showing mockup data in a ScrollView
+2. Demo2: Application showing mockup data using a FlatList ( for memory improvements )
+3. Demo3: Application using ApolloClient to fetch data from a server.
+
+   You can open `./graphql/apollo` and set the `GRAPHQL_URL` value to point to your own server (See `Start the server` above).
